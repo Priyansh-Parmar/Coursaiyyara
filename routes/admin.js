@@ -7,9 +7,7 @@ const bcrypt = require('bcrypt')
 const { mongoose } = require('mongoose')
 const { adminSecretKey } = require('../config')
 const { adminMiddleware } = require("../middlewares/admin")
-/*
-    Why did we have different secret keys? Because suppose an admin signed up and his ID is XYZ in admins table, while also a student signed up, and his ID too is XYZ, though probability of it happening is very low and rare, but never zero, hence it is a vulnerability. So as we encode ID and secret key in tokens, in case both have same ID, they both will get the same token which can be exploited. Hence always keep different secret keys for each table.
-*/
+
 const saltRounds = 11
 
 adminRouter.post("/signup", async function(req,res){
